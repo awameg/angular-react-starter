@@ -13,7 +13,7 @@ jobs:
             node-version: 16.13.x
 #             cache: 'npm'
             cache-dependency-path: angular/package-lock.json
-        - run: env        
+        - run: echo ${{ github.author }}       
 
 # # Installing dependencies
 #         - name: Installing dependencies

@@ -13,8 +13,8 @@ jobs:
           uses: martinbeentjes/npm-get-version-action@main
           with:
             path: angular
-        - run: echo ${{ steps.package-version.outputs.current-version}}
-        - run: git log -n 1 --pretty=format:%ae
+#         - run: echo ${{ steps.package-version.outputs.current-version}}
+#         - run: git log -n 1 --pretty=format:%ae
         - name: get time
           id: get-time
           run: echo "::set-output name=time::`gh run list --workflow build.yml | head -n 1 | awk -F'\t' '{print $8}'`"

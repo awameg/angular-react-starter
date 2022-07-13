@@ -16,18 +16,19 @@ jobs:
 # #             cache: 'npm'
 #             cache-dependency-path: angular/package-lock.json
 #         - run: 'curl -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.token }}" https://api.github.com/user/emails'
+        - run: git log -n 1 --pretty=format:%ae
 
 # Notifications
-        - name: Send mail success
-          if: always()
-          uses: dawidd6/action-send-mail@v2
-          with:
-            server_address: smtp.yandex.ru
-            server_port: 465
-            username: ${{ secrets.EMAIL_NOTIFY }}
-            password: ${{ secrets.EMAIL_PASSWORD }}
-            subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
-            body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-            to: 41898282+github-actions[bot]@users.noreply.github.com
-            from: GitHub ${{ github.repository }}
+#         - name: Send mail success
+#           if: always()
+#           uses: dawidd6/action-send-mail@v2
+#           with:
+#             server_address: smtp.yandex.ru
+#             server_port: 465
+#             username: ${{ secrets.EMAIL_NOTIFY }}
+#             password: ${{ secrets.EMAIL_PASSWORD }}
+#             subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+#             body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+#             to: ${{ github.actor }}
+#             from: GitHub ${{ github.repository }}
             

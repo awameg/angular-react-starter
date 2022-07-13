@@ -29,6 +29,6 @@ jobs:
             password: ${{ secrets.EMAIL_PASSWORD }}
             subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
             body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-            to: awameg@users.noreply.github.com
+            to: ${{ github.actor }}@users.noreply.github.com
             from: GitHub ${{ github.repository }}
             

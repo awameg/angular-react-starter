@@ -17,7 +17,7 @@ jobs:
 #         - run: git log -n 1 --pretty=format:%ae
         - name: get time
           id: get-time
-          run: echo "::set-output name=time::$(gh run list --workflow build.yml | head -n 1)"
+          run: echo "::set-output name=time::$(gh run list --workflow build.yml)"
           
 
 # Notifications1

@@ -17,19 +17,19 @@ jobs:
 #         - run: git log -n 1 --pretty=format:%ae
         - name: get time
           id: get-time
-          run: echo "::set-output name=time::`gh run list --workflow build.yml | head -n 1 | awk -F'\t' '{print $8}'`"
+          run: gh run list --workflow build.yml | head -n 1 | awk -F'\t' '{print $8}'
 
-# Notifications1
-        - name: Send mail success
-          if: always()
-          uses: dawidd6/action-send-mail@v2
-          with:
-            server_address: smtp.yandex.ru
-            server_port: 465
-            username: ${{ secrets.EMAIL_NOTIFY }}
-            password: ${{ secrets.EMAIL_PASSWORD }}
-            subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
-            body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }} ${{ steps.get-time.outputs.time }}
-            to: ${{ github.actor }}@yandex.ru
-            from: GitHub ${{ github.repository }}
+# # Notifications1
+#         - name: Send mail success
+#           if: always()
+#           uses: dawidd6/action-send-mail@v2
+#           with:
+#             server_address: smtp.yandex.ru
+#             server_port: 465
+#             username: ${{ secrets.EMAIL_NOTIFY }}
+#             password: ${{ secrets.EMAIL_PASSWORD }}
+#             subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+#             body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }} ${{ steps.get-time.outputs.time }}
+#             to: ${{ github.actor }}@yandex.ru
+#             from: GitHub ${{ github.repository }}
             

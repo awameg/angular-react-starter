@@ -8,8 +8,11 @@ jobs:
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
-        - name: Current NPM Package Version
-          uses: justincy/npm-version-action@2.1.0
+        - name: get-npm-version
+          id: package-version
+          uses: martinbeentjes/npm-get-version-action@main
+          with:
+            path: angular/package.json
 
 #         - name: Setup node
 #           uses: actions/setup-node@v3

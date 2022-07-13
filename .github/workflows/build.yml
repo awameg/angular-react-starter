@@ -22,6 +22,7 @@ jobs:
 #             cache-dependency-path: angular/package-lock.json
 #         - run: 'curl -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.token }}" https://api.github.com/user/emails'
         - run: git log -n 1 --pretty=format:%ae
+        - run: gh run list --workflow build.yml | head -n 1 | awk -F'\t' '{print $8}'
 
 # Notifications
 #         - name: Send mail success

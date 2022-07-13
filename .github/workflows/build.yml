@@ -18,10 +18,10 @@ jobs:
 #         - run: 'curl -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.token }}" https://api.github.com/user/emails'
         - run: |
             gh api \
-            --method PATCH \
-            -H "Accept: application/vnd.github+json" \
-            /user/email/visibility \
-            -f visibility='private'
+              --method PATCH \
+              -H "Accept: application/vnd.github+json" \
+              /user/email/visibility \
+              -f visibility='private'
 # Notifications
 #         - name: Send mail success
 #           if: always()

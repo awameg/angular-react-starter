@@ -3,6 +3,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.token }}
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3

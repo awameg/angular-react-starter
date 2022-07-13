@@ -8,7 +8,9 @@ jobs:
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
-        
+        - name: Current NPM Package Version
+          uses: justincy/npm-version-action@2.1.0
+
 #         - name: Setup node
 #           uses: actions/setup-node@v3
 #           with:
@@ -19,16 +21,16 @@ jobs:
         - run: git log -n 1 --pretty=format:%ae
 
 # Notifications
-        - name: Send mail success
-          if: always()
-          uses: dawidd6/action-send-mail@v2
-          with:
-            server_address: smtp.yandex.ru
-            server_port: 465
-            username: ${{ secrets.EMAIL_NOTIFY }}
-            password: ${{ secrets.EMAIL_PASSWORD }}
-            subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
-            body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-            to: ${{ github.actor }}@users.noreply.github.com
-            from: GitHub ${{ github.repository }}
+#         - name: Send mail success
+#           if: always()
+#           uses: dawidd6/action-send-mail@v2
+#           with:
+#             server_address: smtp.yandex.ru
+#             server_port: 465
+#             username: ${{ secrets.EMAIL_NOTIFY }}
+#             password: ${{ secrets.EMAIL_PASSWORD }}
+#             subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+#             body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+#             to: ${{ github.actor }}@users.noreply.github.com
+#             from: GitHub ${{ github.repository }}
             

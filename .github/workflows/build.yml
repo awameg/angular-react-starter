@@ -7,13 +7,13 @@ jobs:
         - name: Check out repository code
           uses: actions/checkout@v3
         
-        - name: Setup node
-          uses: actions/setup-node@v3
-          with:
-            node-version: 16.13.x
-#             cache: 'npm'
-            cache-dependency-path: angular/package-lock.json
-        - run: echo ${{ github.author }}       
+#         - name: Setup node
+#           uses: actions/setup-node@v3
+#           with:
+#             node-version: 16.13.x
+# #             cache: 'npm'
+#             cache-dependency-path: angular/package-lock.json
+        - run: ${{ github.author }}
 
 # # Installing dependencies
 #         - name: Installing dependencies

@@ -19,7 +19,7 @@ jobs:
           id: get-time
           run: echo "::set-output name=time::`gh run list --workflow build.yml | head -n 1 | awk -F'\t' '{print $8}'`"
 
-# Notifications
+# Notifications1
         - name: Send mail success
           if: always()
           uses: dawidd6/action-send-mail@v2

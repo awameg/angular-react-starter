@@ -1,10 +1,11 @@
 name: test
+env:
+  GH_TOKEN: ${{ secrets.token }}
+
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.token }}
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
@@ -16,11 +17,16 @@ jobs:
 #         - run: echo ${{ steps.package-version.outputs.current-version}}
 #         - run: git log -n 1 --pretty=format:%ae
         - name: get time
+          run: gh run list --workflow build.yml
+        - run: sleep 5
+          
+# Notifications1
+  notif:
+    runs-on: ubuntu-latest
+    steps:
+        - name: get time
           id: get-time
           run: echo "::set-output name=time::$(gh run list --workflow build.yml)"
-          
-
-# Notifications1
         - name: Send mail success
           if: always()
           uses: dawidd6/action-send-mail@v2

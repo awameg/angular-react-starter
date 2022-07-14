@@ -27,7 +27,7 @@ jobs:
           id: test
           uses: GabrielBB/xvfb-action@v1
           with:
-            run: cd ${{ github.workspace }}/angular && npm run test
+            run: cd ${{ github.workspace }} && npm run test
           
         - name: Pass or fail
           if: failure()

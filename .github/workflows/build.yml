@@ -1,11 +1,7 @@
 name: test
 env:
   GH_TOKEN: ${{ secrets.token }}
-on:
-  push:
-    branches: master
-  pull_request:
-    branches: master
+on: [push]
 
 jobs:
 ## Main job

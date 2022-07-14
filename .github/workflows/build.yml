@@ -16,18 +16,18 @@ jobs:
             path: angular
 #         - run: echo ${{ steps.package-version.outputs.current-version}}
 #         - run: git log -n 1 --pretty=format:%ae
-        - name: get time
-          id: get-time
-          run: echo "::set-output name=time::$(gh run list --workflow build.yml)"
+        
         - run: sleep 5
           
 # Notifications1
   notif:
     runs-on: ubuntu-latest
     steps:
-        
+        - name: get time
+          id: get-time
+          run: echo "::set-output name=time::$(gh run list --workflow build.yml)"
         - name: Send mail success
-          if: always()
+          if: success()
           uses: dawidd6/action-send-mail@v2
           with:
             server_address: smtp.yandex.ru
@@ -35,7 +35,7 @@ jobs:
             username: ${{ secrets.EMAIL_NOTIFY }}
             password: ${{ secrets.EMAIL_PASSWORD }}
             subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
-            body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }} ${{ jobs.build.outputs.time }}
+            body: "${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }} ${{ steps.get-time.outputs.time }}"
             to: ${{ github.actor }}@yandex.ru
             from: GitHub ${{ github.repository }}
             

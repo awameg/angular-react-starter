@@ -27,6 +27,9 @@ jobs:
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
+        - name: get email
+          id: get-email
+          run: echo "::set-output name=email::$(git log -n 1 --pretty=format:%ae)"
         - name: get time
           id: get-time
           run: echo "::set-output name=time::$(gh run list --workflow build.yml | head -n 1)"
@@ -40,6 +43,6 @@ jobs:
             password: ${{ secrets.EMAIL_PASSWORD }}
             subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
             body: "${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }} ${{ steps.get-time.outputs.time }}"
-            to: ${{ github.actor }}@yandex.ru
+            to: ${{ steps.get-email.outputs.email }}
             from: GitHub ${{ github.repository }}
             

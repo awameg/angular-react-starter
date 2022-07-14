@@ -20,11 +20,13 @@ jobs:
 # Installing dependencies
         - name: Installing dependencies
           id: install
-          run: cd ${{ github.workspace }}/angular && npm install
+          run: |
+              cd ${{ github.workspace }}/angular && npm install \
+              echo ::set-output name=exit_code::$?
 
 # Run tests          
         - name: test
-          needs: [install]
+          if: steps.build.outputs.exit_code == 0
           id: test
           run: cd ${{ github.workspace }}/angular && npm run test
           
@@ -33,17 +35,6 @@ jobs:
             if: [[ ${{ steps.test.conclusion }} == 'failure' ]]; then exit 1; else exit 0; fi
         
         - run: git --version
-
-#   - name: Build app
-#         id: build
-#         run: |
-#           <build command>
-#           echo ::set-output name=exit_code::$?
-
-#       - name: Run tests
-
-#       - name: Create artifact of test coverage
-#         if: steps.build.outputs.exit_code == 0
 
 
 # # Notifications
